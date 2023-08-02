@@ -44,7 +44,7 @@ public class MapperTests
         // Act
         var sut = Mapper.Example1(v1Permission);
         
-        // Assert
+        // Assert - this will fail
         sut.Should().HaveCount(0);
     }
     
