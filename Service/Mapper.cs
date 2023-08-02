@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Service.Extensions;
-using Service.Models;
+﻿using Service.Models;
 
 namespace Service;
 
@@ -35,7 +33,7 @@ public static class Mapper
         return results;
     }
 
-    public static List<string> Example3(UserPermissionV1 v1Permission)
+    public static IEnumerable<string> Example3(UserPermissionV1 v1Permission)
     {
         var securableAttributes = v1Permission.SecurableAttributes ?? new Dictionary<string, IEnumerable<SecurableAttributeV1>>();
 
