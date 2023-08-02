@@ -1,4 +1,3 @@
-using FluentAssertions.Execution;
 using Service.Models;
 
 namespace Service.Tests;
@@ -27,7 +26,7 @@ public class MapperTests
         var sut = Mapper.Example1(v1Permission);
         
         // Assert
-        sut.Should().HaveCount(1);
+        sut.Should().ContainSingle();
     }
 
     [Fact]
@@ -42,10 +41,11 @@ public class MapperTests
         };
         
         // Act
-        var sut = Mapper.Example1(v1Permission);
+        Action action = () =>  Mapper.Example1(v1Permission);
         
-        // Assert - this will fail
-        sut.Should().HaveCount(0);
+        // Assert
+        action.Should().Throw<NullReferenceException>()
+            .WithMessage("Object reference not set to an instance of an object.");
     }
     
     [Fact]
@@ -70,7 +70,7 @@ public class MapperTests
         var sut = Mapper.Example2(v1Permission);
         
         // Assert
-        sut.Should().HaveCount(1);
+        sut.Should().ContainSingle();
     }
 
     [Fact]
@@ -88,7 +88,7 @@ public class MapperTests
         var sut = Mapper.Example2(v1Permission);
         
         // Assert
-        sut.Should().HaveCount(0);
+        sut.Should().BeEmpty();
     }
 
     [Fact]
@@ -113,7 +113,7 @@ public class MapperTests
         var sut = Mapper.Example3(v1Permission);
         
         // Assert
-        sut.Should().HaveCount(1);
+        sut.Should().ContainSingle();
     }
 
     [Fact]
@@ -131,6 +131,6 @@ public class MapperTests
         var sut = Mapper.Example3(v1Permission);
         
         // Assert
-        sut.Should().HaveCount(0);
+        sut.Should().BeEmpty();
     }
 }
